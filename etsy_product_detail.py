@@ -3,12 +3,13 @@ import os
 import requests
 from bs4 import BeautifulSoup
 import csv
-
+from datetime import datetime
 def etsy_product_details(product_link):
    """
    Fetch all data from a specific website
    """
    """define all variables"""
+   date_time = str(datetime.now())
    stock= "X"
    author_and_title= ""
    shipping_time=""
@@ -67,7 +68,7 @@ def etsy_product_details(product_link):
    """
    Write in csv file 
    """
-   file_name= 'etsy_output_file.csv'
+   file_name=f"etsy_output_file-{datetime.now():%Y-%m-%d %H-%m}.csv"
    with open(file_name, 'a', encoding='utf-8') as file_data:
       etsy_product_writer= csv.DictWriter(file_data,fieldnames=[
          'product_link','in_stock','author_and_title','shipping_time','product_price',
